@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 export enum TabRef {
-  NEVERA = 'NEVERA'
+  NEVERA = 'fridge'
 }
 
 @Component({
