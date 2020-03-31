@@ -1,7 +1,8 @@
 {
   "name": "health-it",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
