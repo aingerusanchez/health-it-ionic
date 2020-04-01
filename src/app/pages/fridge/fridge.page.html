@@ -26,12 +26,14 @@
     <ion-item-sliding *ngFor="let food of foodList; let i = index">
       <ion-item>
         <ion-badge slot="start" color="primary" mode="ios">{{ food?.amount }}</ion-badge>
-        <ion-label>{{ food?.name | titlecase }}</ion-label>
+        <!-- <ion-label>{{ foodList[i].name }}</ion-label> -->
+        <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFood($event.detail.value, i)" debounce="1000"> </ion-input>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option (click)="consume(i)">Consumir</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
 
 </ion-content>

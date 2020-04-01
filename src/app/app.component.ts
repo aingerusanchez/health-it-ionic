@@ -23,7 +23,7 @@ export class AppComponent {
         StatusBar.setBackgroundColor({ color: '#CDCDCD' });
       }
     } catch (err) {
-      console.error('Esta ejecutando la app en un navegador', err);
+      console.warn('Esta ejecutando la app en un navegador', err);
     }
   }
 }
