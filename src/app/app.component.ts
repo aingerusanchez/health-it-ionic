@@ -20,7 +20,7 @@ export class AppComponent {
       await SplashScreen.hide();
       await StatusBar.setStyle({ style: StatusBarStyle.Light });
       if (this.platform.is('android')) {
-        StatusBar.setBackgroundColor({ color: '#CDCDCD' });
+      StatusBar.setBackgroundColor({ color: '#28ba62' });
       }
     } catch (err) {
       console.warn('Esta ejecutando la app en un navegador', err);
