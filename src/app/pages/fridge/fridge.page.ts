@@ -16,7 +16,8 @@ export class FridgePage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.foodList = await this.storage.getObject(StorageKey.FOOD_LIST) || [];
-    console.log('LOG: FridgePage -> constructor -> foodList', this.foodList);
+    console.log('Carga inicial de la lista de alimentos: ');
+    console.table(this.foodList);
   }
 
   /** Add a new food to the `foodList` */
@@ -30,11 +31,22 @@ export class FridgePage implements OnInit {
   }
 
   /** Edit a food from `foodList` */
-  public editFood(food: string, i: number) {
+  public editFood(event: any, i: number) {
+    const food = event.detail.value;
     if (food) {
       this.foodList[i] = {...this.foodList[i], name: food.trim() };
       this.updateFoodList(this.foodList);
     }
+    /* const target = event.target;
+    if (target) {
+      this.setItemFocus(target);
+     } */
+  }
+
+  public async setItemFocus(target: any) {
+    setTimeout(() => {
+      target.setFocus();
+    }, 150);
   }
 
   /** Delete a food from `foodList` based on food index */

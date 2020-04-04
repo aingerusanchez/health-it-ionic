@@ -7,12 +7,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- collapsed-header (only iOS) -->
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Nevera</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <ion-list>
     <ion-list-header>
@@ -26,14 +20,13 @@
     <ion-item-sliding *ngFor="let food of foodList; let i = index">
       <ion-item>
         <ion-badge slot="start" color="primary" mode="ios">{{ food?.amount }}</ion-badge>
-        <!-- <ion-label>{{ foodList[i].name }}</ion-label> -->
-        <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFood($event.detail.value, i)" debounce="1000"> </ion-input>
+        <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFood($event, i)"
+          debounce="3000"> </ion-input>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option (click)="consume(i)">Consumir</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
 
 </ion-content>
