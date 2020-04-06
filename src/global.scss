@@ -25,6 +25,5 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-[bold], .bold {
-    font-weight: bold;
-}
+/* Customs style files */
+@import 'theme/attributes.scss';
