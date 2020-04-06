@@ -4,7 +4,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 0.0.1 (2020-04-06)
 
-
 ### Features
 
 * **nevera:** añadir/consumir alimentos en la lista ([ad5727e](https://github.com/Aingeru72/health-it-ionic/commit/ad5727eb0c7811af4bf0a9cc203bdf995e20c4a7))
