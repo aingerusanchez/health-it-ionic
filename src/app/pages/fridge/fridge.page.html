@@ -10,23 +10,40 @@
 
   <ion-list>
     <ion-list-header>
-      <ion-input type="text" [(ngModel)]="newFood" placeholder="Añadir alimento..." autocapitalize
+      <ion-input type="text" [(ngModel)]="newFood" placeholder="Añadir alimento" autocapitalize
         (keyup.enter)="addNewFood()">
       </ion-input>
       <ion-button fill="clear" shape="round" class="bold" (click)="addNewFood()">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </ion-list-header>
+
     <ion-item-sliding *ngFor="let food of foodList; let i = index">
       <ion-item>
-        <ion-badge slot="start" color="primary" mode="ios">{{ food?.amount }}</ion-badge>
-        <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFood($event, i)"
-          debounce="3000"> </ion-input>
+        <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFoodName($event, i)"
+          debounce="3000">
+        </ion-input>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="decrement(food, i)" color="danger">
+            <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-label color="primary" bold>{{ food?.amount }}</ion-label>
+          <ion-button (click)="increment(food, i)" color="tertiary">
+            <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
       </ion-item>
+
       <ion-item-options side="end">
-        <ion-item-option (click)="consume(i)">Consumir</ion-item-option>
+        <ion-item-option (click)="delete(i)" color="light">
+          <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
+
     </ion-item-sliding>
+
   </ion-list>
 
 </ion-content>

@@ -9,10 +9,10 @@ import { Food } from 'src/app/models/models-index';
 })
 export class FridgePage implements OnInit {
 
+  constructor(private storage: StorageService) { }
+
   public foodList: Food[] = [];
   public newFood = '';
-
-  constructor(private storage: StorageService) { }
 
   async ngOnInit(): Promise<void> {
     this.foodList = await this.storage.getObject(StorageKey.FOOD_LIST) || [];
@@ -31,10 +31,10 @@ export class FridgePage implements OnInit {
   }
 
   /** Edit a food from `foodList` */
-  public editFood(event: any, i: number) {
+  public editFoodName(event: any, i: number) {
     const food = event.detail.value;
     if (food) {
-      this.foodList[i] = {...this.foodList[i], name: food.trim() };
+      this.foodList[i] = { ...this.foodList[i], name: food.trim() };
       this.updateFoodList(this.foodList);
     }
     /* const target = event.target;
@@ -50,7 +50,7 @@ export class FridgePage implements OnInit {
   }
 
   /** Delete a food from `foodList` based on food index */
-  public consume(foodIndex: number) {
+  public delete(foodIndex: number) {
     console.debug('LOG: FridgePage -> consume -> foodIndex', foodIndex);
     this.foodList.splice(foodIndex, 1);
     this.updateFoodList(this.foodList);
@@ -59,6 +59,20 @@ export class FridgePage implements OnInit {
   private updateFoodList(foodList: Food[]): void {
     console.log('LOG: FridgePage -> updateFoodList -> foodList', foodList);
     this.storage.setObject(StorageKey.FOOD_LIST, foodList);
+  }
+
+  public decrement(food: Food, i: number) {
+    if (food && i >= 0) {
+      if (this.foodList[i].amount > 1) { this.foodList[i].amount--; }
+      this.updateFoodList(this.foodList);
+    }
+  }
+
+  public increment(food: Food, i: number) {
+    if (food && i >= 0) {
+      this.foodList[i].amount++;
+      this.updateFoodList(this.foodList);
+    }
   }
 
 }
