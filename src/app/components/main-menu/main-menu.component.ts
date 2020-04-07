@@ -8,7 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class MainMenuComponent implements OnInit {
 
-  public appVersion = environment.version;
+  public appName: string = environment.appName;
+  public appVersion: string = environment.version;
 
   constructor() { }
 
