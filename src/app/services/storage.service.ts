@@ -35,7 +35,8 @@ export class StorageService {
   }
 
   async getItem(key: string) {
-    return await Storage.get({ key });
+    const item = await Storage.get({ key });
+    return item.value || null;
   }
 
   async removeItem(key: string) {
