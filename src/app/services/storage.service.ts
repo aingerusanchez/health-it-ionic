@@ -4,7 +4,8 @@ import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
 
 export enum StorageKey {
-  FOOD_LIST = 'foodList'
+  FOOD_LIST = 'foodList',
+  DARK_MODE = 'dark',
 }
 
 @Injectable({
@@ -26,7 +27,7 @@ export class StorageService {
     return JSON.parse(ret.value);
   }
 
-  async setItem(key: string, value: string) {
+  async setItem(key: StorageKey, value: string) {
     await Storage.set({
       key,
       value

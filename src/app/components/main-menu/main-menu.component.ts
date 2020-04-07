@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+// SERVICES
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'main-menu',
@@ -11,8 +13,8 @@ export class MainMenuComponent implements OnInit {
   public appName: string = environment.appName;
   public appVersion: string = environment.version;
 
-  constructor() { }
+  constructor(public theme: ThemeService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
