@@ -6,6 +6,7 @@ const { Storage } = Plugins;
 export enum StorageKey {
   FOOD_LIST = 'foodList',
   DARK_MODE = 'dark',
+  LANGUAGE = 'lang',
 }
 
 @Injectable({
