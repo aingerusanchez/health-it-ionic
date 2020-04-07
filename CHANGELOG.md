@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/Aingeru72/health-it-ionic/compare/v0.0.1...v0.0.2) (2020-04-07)
+
+
+### Features
+
+* **dark-mode:** se puede alternar el tema de la app (claro/oscuro) mediante el switch de la cabecera del menú lateral ([b7d9244](https://github.com/Aingeru72/health-it-ionic/commit/b7d92442578b1cc826257d20852449979c0e0e32))
+
 ### 0.0.1 (2020-04-06)
 
 ### Features
