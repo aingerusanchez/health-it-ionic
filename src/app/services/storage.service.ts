@@ -4,7 +4,7 @@ import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
 
 export enum StorageKey {
-  FOOD_LIST = 'foodList',
+  FOOD_LIST = 'food_list',
   DARK_MODE = 'dark',
   LANGUAGE = 'lang',
 }

@@ -11,6 +11,10 @@
           <ion-icon slot="end" name="moon" color="tertiary"></ion-icon>
         </ion-item> -->
 
+        <ion-thumbnail class="flag-thumbnail">
+          <img class="language-flag" src="assets/icon/{{currenLang}}.jpg" />
+        </ion-thumbnail>
+
         <ion-select class="ion-padding-end bold" selectedText="{{ translate.currentLang | uppercase }}"
           [(value)]="translate.currentLang" interface="popover" (ionChange)="changeLang($event.detail.value)">
           <ion-select-option [value]="lang" *ngFor="let lang of translate.getLangs()">
