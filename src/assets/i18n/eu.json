@@ -1,6 +1,7 @@
 {
     "FRIDGE": "hozkailua",
-    "ES": "Erderaz",
-    "EU": "Euskera",
-    "EN": "Ingeles"
+    "ES": "erderaz",
+    "EU": "euskera",
+    "EN": "ingeles",
+    "EXPIRATION": "iraungitze data"
 }

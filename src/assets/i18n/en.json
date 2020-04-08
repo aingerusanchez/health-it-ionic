@@ -1,6 +1,7 @@
 {
     "FRIDGE": "fridge",
-    "ES": "Spanish",
-    "EU": "Basque",
-    "EN": "English"
+    "ES": "spanish",
+    "EU": "basque",
+    "EN": "english",
+    "EXPIRATION": "expiration"
 }

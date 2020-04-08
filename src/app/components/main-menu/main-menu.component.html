@@ -18,7 +18,7 @@
         <ion-select class="ion-padding-end bold" selectedText="{{ translate.currentLang | uppercase }}"
           [(value)]="translate.currentLang" interface="popover" (ionChange)="changeLang($event.detail.value)">
           <ion-select-option [value]="lang" *ngFor="let lang of translate.getLangs()">
-            {{ lang | uppercase }} - {{ lang | uppercase | translate }}
+            {{ lang | uppercase }} - {{ lang | uppercase | translate | titlecase }}
           </ion-select-option>
         </ion-select>
       </ion-buttons>

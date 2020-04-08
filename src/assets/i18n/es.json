@@ -1,6 +1,7 @@
 {
     "FRIDGE": "nevera",
-    "ES": "Español",
-    "EU": "Euskera",
-    "EN": "Inglés"
+    "ES": "español",
+    "EU": "euskera",
+    "EN": "inglés",
+    "EXPIRATION": "caducidad"
 }
