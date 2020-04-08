@@ -33,8 +33,8 @@
         <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFoodName($event, i)"
           debounce="3000">
         </ion-input>
-        <ion-datetime displayFormat="DD/MM/YYYY" value="{{ food.expiration | capitalize }}"
-          (ionChange)="editFoodExpiration($event, i)">
+        <ion-datetime displayFormat="DD/MM/YYYY" value="{{ food.expiration}}"
+          [placeholder]="'FROZEN' | translate | capitalize" (ionChange)="editFoodExpiration($event, i)">
         </ion-datetime>
         <ion-buttons slot="end">
           <ion-button (click)="decrement(food, i)" color="danger">

@@ -3,5 +3,6 @@
     "ES": "spanish",
     "EU": "basque",
     "EN": "english",
-    "EXPIRATION": "expiration"
+    "EXPIRATION": "expiration",
+    "FROZEN": "frozen"
 }
