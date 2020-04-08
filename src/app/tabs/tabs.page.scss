@@ -1,6 +1,9 @@
-.tab-selected {
-    color: var(--ion-color-primary);
-    ion-label {
-        font-weight: bold;
+ion-tab-bar {
+    --border: 0;
+    .tab-selected {
+        color: var(--ion-color-primary);
+        ion-label {
+            font-weight: bold;
+        }
     }
-} 
+}

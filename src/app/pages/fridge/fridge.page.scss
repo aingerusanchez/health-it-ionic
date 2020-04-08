@@ -1,3 +1,25 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+.new-food-row {
+  display: flex;
+  align-items: center;
+  background: var(--ion-color-tertiary-tint);
+
+  ion-col {
+    // padding-left: 4px;
+    // padding-right: 4px;
+
+    .new-expiration {
+      color: var(--ion-color-dark);
+      position: absolute;
+      bottom: -15px;
+      // padding-left: 16px;
+    }
+  }
+}
+
+.food-amount {
+  width: 24px;
+}

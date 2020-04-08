@@ -15,32 +15,33 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-list>
-    <ion-list-header>
-      <ion-input type="text" [(ngModel)]="newFood" placeholder="Añadir alimento" autocapitalize
-        (keyup.enter)="addNewFood()" tabindex="0">
-      </ion-input>
-      <ion-datetime [(ngModel)]="newExpiration" displayFormat="DD/MM/YYYY"
-        placeholder="{{ 'EXPIRATION' | translate | capitalize }}" (keyup.enter)="addNewFood()" tabindex="1">
-      </ion-datetime>
-      <ion-button fill="clear" shape="round" class="bold" (click)="addNewFood()" tabindex="2">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-list-header>
+  <ion-list class="food-list">
 
     <ion-item-sliding #slidingItem *ngFor="let food of foodList; let i = index">
+
       <ion-item>
-        <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFoodName($event, i)"
-          debounce="3000">
-        </ion-input>
-        <ion-datetime displayFormat="DD/MM/YYYY" value="{{ food.expiration}}"
-          [placeholder]="'FROZEN' | translate | capitalize" (ionChange)="editFoodExpiration($event, i)">
-        </ion-datetime>
-        <ion-buttons slot="end">
+
+        <ion-row>
+          <ion-col size="7">
+            <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFoodName($event, i)"
+              debounce="3000" [tabindex]="i">
+            </ion-input>
+          </ion-col>
+
+          <ion-col size="5" class="center">
+            <ion-datetime displayFormat="DD/MM/YYYY" class="ion-text-right ion-no-padding" mode="ios"
+              value="{{ food.expiration}}" [min]="minDate" [max]="maxDate"
+              [placeholder]="'FROZEN' | translate | capitalize" [doneText]="'SELECT' | translate | capitalize"
+              [cancelText]="'CANCEL' |  translate | capitalize" (ionChange)="editFoodExpiration($event, i)">
+            </ion-datetime>
+          </ion-col>
+        </ion-row>
+
+        <ion-buttons slot="end" class="ion-no-margin">
           <ion-button (click)="decrement(food, i)" color="danger">
             <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
           </ion-button>
-          <ion-label color="tertiary" bold>{{ food?.amount }}</ion-label>
+          <ion-label color="dark" class="food-amount ion-text-center" bold>{{ food?.amount }}</ion-label>
           <ion-button (click)="increment(food, i)" color="primary">
             <ion-icon name="add-circle" slot="icon-only"></ion-icon>
           </ion-button>
@@ -60,5 +61,33 @@
     </ion-item-sliding>
 
   </ion-list>
-
 </ion-content>
+
+<ion-footer>
+  <ion-row class="new-food-row">
+    <ion-col size="5">
+      <ion-input type="text" [(ngModel)]="newFood" [placeholder]="'NEW_FOOD' | translate | capitalize" autocapitalize class="bold"
+        color="light" (keyup.enter)="addNewFood()">
+      </ion-input>
+    </ion-col>
+
+    <ion-col size="4">
+      <ion-datetime [(ngModel)]="newExpiration" displayFormat="DD/MM/YYYY" mode="ios" class="new-expiration"
+        [min]="minDate" [max]="maxDate" placeholder="{{ 'EXPIRATION' | translate | capitalize }}"
+        [doneText]="'SELECT' | translate | capitalize" [cancelText]="'CANCEL' |  translate | capitalize">
+      </ion-datetime>
+    </ion-col>
+
+    <ion-col size="3" class="horizontal-center ion-padding-end">
+      <ion-input type="number" class="ion-text-right ion-padding-end" [(ngModel)]="newAmount" min="1"
+        (keyup.enter)="addNewFood()">
+      </ion-input>
+
+      <ion-button fill="clear" shape="round" class="bold ion-no-margin ion-no-padding" color="primary" size="large"
+        (click)="addNewFood()">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
+
+    </ion-col>
+  </ion-row>
+</ion-footer>

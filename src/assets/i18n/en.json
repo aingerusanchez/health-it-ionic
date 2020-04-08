@@ -4,5 +4,8 @@
     "EU": "basque",
     "EN": "english",
     "EXPIRATION": "expiration",
-    "FROZEN": "frozen"
+    "FROZEN": "frozen",
+    "SELECT": "select",
+    "CANCEL": "cancel",
+    "NEW_FOOD": "new food"
 }

@@ -4,5 +4,8 @@
     "EU": "euskera",
     "EN": "inglés",
     "EXPIRATION": "caducidad",
-    "FROZEN": "congelado"
+    "FROZEN": "congelado",
+    "SELECT": "seleccionar",
+    "CANCEL": "cancelar",
+    "NEW_FOOD": "nuevo alimento"
 }

@@ -14,18 +14,24 @@ export class FridgePage implements OnInit {
   public foodList: Food[] = [];
   public newFood = '';
   public newExpiration = null;
+  public newAmount = 1;
+  public minDate: string;
+  public maxDate: string;
 
   async ngOnInit(): Promise<void> {
     this.foodList = await this.storage.getObject(StorageKey.FOOD_LIST) || [];
     console.log('Carga inicial de la lista de alimentos: ');
     console.table(this.foodList);
+    this.minDate = this.getTodayISOString();
+    this.maxDate = this.getMaxDateISOString();
   }
 
   /** Add a new food to the `foodList` */
   public addNewFood() {
     if (this.newFood) {
-      this.foodList.push({ name: this.newFood, expiration: this.newExpiration, amount: 1 });
+      this.foodList.push({ name: this.newFood, amount: this.newAmount, expiration: this.newExpiration });
       this.newFood = '';
+      this.newAmount = 1;
       this.newExpiration = null;
       this.updateFoodList(this.foodList);
     }
@@ -105,6 +111,18 @@ export class FridgePage implements OnInit {
       return 0;
     });
     return foodList;
+  }
+
+  /** Return current day in ISOString format */
+  private getTodayISOString() {
+    const today = new Date();
+    return `${today.getFullYear()}-${('0' + (today.getMonth() + 1)).slice(-2)}-${(today.getDate()).toString().padStart(2, '0')}`;
+  }
+
+  /** Return current day 5 years from now in ISOString format */
+  private getMaxDateISOString() {
+    const today = new Date();
+    return `${today.getFullYear() + 5}-${('0' + (today.getMonth() + 1)).slice(-2)}-${(today.getDate()).toString().padStart(2, '0')}`;
   }
 
 }
