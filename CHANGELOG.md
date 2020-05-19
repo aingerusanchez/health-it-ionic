@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/Aingeru72/health-it-ionic/compare/v0.0.2...v0.0.3) (2020-05-19)
+
+
+### Features
+
+* **multilenguaje:** añadido el paquete ngx-translate para multilenguaje. Idiomas añadidos: 'es', 'eu', 'en' ([f3b528b](https://github.com/Aingeru72/health-it-ionic/commit/f3b528b9138b5bf455584313567c945afd8563b0))
+* **nevera:** barra de buscador para filtrar alimentos ([cbf629f](https://github.com/Aingeru72/health-it-ionic/commit/cbf629ffa22b9521a0294e482f7f4a2f3c6e4ec3))
+* **nevera:** CRUD con fecha de caducidad ([3e8b6f3](https://github.com/Aingeru72/health-it-ionic/commit/3e8b6f31745a392b7ca24280b8d8e53b087fc4b6))
+* **nevera:** se puede añadir un alimento con la cantidad asignada. ([30ff547](https://github.com/Aingeru72/health-it-ionic/commit/30ff547382f91207161d1098869498b212b4f40f))
+
+
+### Bug Fixes
+
+* **nevera:** espacio para rellenar la cantidad e inicializado vacio (para no borrar el 1) ([41b63c1](https://github.com/Aingeru72/health-it-ionic/commit/41b63c16df9f4be384db16f07cf302336c631aea))
+
 ### [0.0.2](https://github.com/Aingeru72/health-it-ionic/compare/v0.0.1...v0.0.2) (2020-04-07)
 
 
