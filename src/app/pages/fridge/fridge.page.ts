@@ -17,6 +17,7 @@ export class FridgePage implements OnInit {
   public newAmount = 1;
   public minDate: string;
   public maxDate: string;
+  public searchtext: string;
 
   async ngOnInit(): Promise<void> {
     this.foodList = await this.storage.getObject(StorageKey.FOOD_LIST) || [];
@@ -93,6 +94,12 @@ export class FridgePage implements OnInit {
       this.updateFoodList(this.foodList);
     }
   }
+
+  /* public filterFoodlist(event: CustomEvent) {
+    if (event.detail.value) {
+      debugger;
+    }
+  } */
 
   private sortByExpiration(foodList: Food[]): Food[] {
     foodList.sort((a, b) => {

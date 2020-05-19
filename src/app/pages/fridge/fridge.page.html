@@ -10,14 +10,23 @@
     <ion-title bold>
       {{ 'FRIDGE' | translate | capitalize }}
     </ion-title>
+
   </ion-toolbar>
+
+  <ion-toolbar color="primary">
+    <ion-searchbar [(ngModel)]="searchtext" type="text" inputmode="search" enterkeyhint="search"
+      placeholder="{{ 'buscar alimento' | translate | capitalize }}..." [debounce]="250" showCancelButton="never"
+      searchIcon="search-sharp" animated="true" clearIcon="close-sharp" autocomplete="on">
+    </ion-searchbar>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
   <ion-list class="food-list">
 
-    <ion-item-sliding #slidingItem *ngFor="let food of foodList; let i = index">
+    <ion-item-sliding #slidingItem *ngFor="let food of foodList | filter: ['name']: searchtext; let i = index">
 
       <ion-item>
 
@@ -66,8 +75,8 @@
 <ion-footer>
   <ion-row class="new-food-row">
     <ion-col size="5">
-      <ion-input type="text" [(ngModel)]="newFood" [placeholder]="'NEW_FOOD' | translate | capitalize" autocapitalize class="bold"
-        color="light" (keyup.enter)="addNewFood()">
+      <ion-input type="text" [(ngModel)]="newFood" [placeholder]="'NEW_FOOD' | translate | capitalize" autocapitalize
+        class="bold" color="light" (keyup.enter)="addNewFood()">
       </ion-input>
     </ion-col>
 
