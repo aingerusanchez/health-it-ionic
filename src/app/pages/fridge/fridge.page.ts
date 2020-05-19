@@ -14,7 +14,7 @@ export class FridgePage implements OnInit {
   public foodList: Food[] = [];
   public newFood = '';
   public newExpiration = null;
-  public newAmount = 1;
+  public newAmount = null;
   public minDate: string;
   public maxDate: string;
   public searchtext: string;
@@ -32,7 +32,7 @@ export class FridgePage implements OnInit {
     if (this.newFood) {
       this.foodList.push({ name: this.newFood, amount: this.newAmount, expiration: this.newExpiration });
       this.newFood = '';
-      this.newAmount = 1;
+      this.newAmount = null;
       this.newExpiration = null;
       this.updateFoodList(this.foodList);
     }

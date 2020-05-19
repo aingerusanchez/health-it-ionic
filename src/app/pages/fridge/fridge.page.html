@@ -15,7 +15,7 @@
 
   <ion-toolbar color="primary">
     <ion-searchbar [(ngModel)]="searchtext" type="text" inputmode="search" enterkeyhint="search"
-      placeholder="{{ 'buscar alimento' | translate | capitalize }}..." [debounce]="250" showCancelButton="never"
+      placeholder="{{ 'SEARCH_BY_NAME' | translate | capitalize }}" [debounce]="250" showCancelButton="never"
       searchIcon="search-sharp" animated="true" clearIcon="close-sharp" autocomplete="on">
     </ion-searchbar>
   </ion-toolbar>
@@ -24,7 +24,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-list class="food-list">
+  <ion-list class="food-list ion-no-padding">
 
     <ion-item-sliding #slidingItem *ngFor="let food of foodList | filter: ['name']: searchtext; let i = index">
 
@@ -74,9 +74,9 @@
 
 <ion-footer>
   <ion-row class="new-food-row">
-    <ion-col size="5">
-      <ion-input type="text" [(ngModel)]="newFood" [placeholder]="'NEW_FOOD' | translate | capitalize" autocapitalize
-        class="bold" color="light" (keyup.enter)="addNewFood()">
+    <ion-col size="4">
+      <ion-input type="text" [(ngModel)]="newFood" [placeholder]="'FOOD' | translate | capitalize" autocapitalize
+        class="bold ion-padding-start" color="light" (keyup.enter)="addNewFood()">
       </ion-input>
     </ion-col>
 
@@ -87,8 +87,8 @@
       </ion-datetime>
     </ion-col>
 
-    <ion-col size="3" class="horizontal-center ion-padding-end">
-      <ion-input type="number" class="ion-text-right ion-padding-end" [(ngModel)]="newAmount" min="1"
+    <ion-col size="4" class="horizontal-center ion-padding-end">
+      <ion-input type="number" class="ion-text-right ion-padding-end" [(ngModel)]="newAmount" min="1" placeholder="1"
         (keyup.enter)="addNewFood()">
       </ion-input>
 

@@ -7,5 +7,7 @@
     "FROZEN": "frozen",
     "SELECT": "select",
     "CANCEL": "cancel",
-    "NEW_FOOD": "new food"
+    "NEW_FOOD": "new food",
+    "FOOD": "food",
+    "SEARCH_BY_NAME": "search by name"
 }
