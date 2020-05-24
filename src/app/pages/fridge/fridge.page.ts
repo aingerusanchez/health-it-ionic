@@ -6,6 +6,8 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
 // MODELS
 import { Food } from 'src/app/models/models-index';
 
+const EXP_WARNING = 3;
+
 @Component({
   selector: 'fridge',
   templateUrl: 'fridge.page.html',
@@ -157,6 +159,41 @@ export class FridgePage implements OnInit {
   private getMaxDateISOString() {
     const today = new Date();
     return `${today.getFullYear() + 5}-${('0' + (today.getMonth() + 1)).slice(-2)}-${(today.getDate()).toString().padStart(2, '0')}`;
+  }
+
+  /**
+   * Return a class depending on the days left for expiration
+   * @param expDate expiration date
+   * @returns `expClass` color class name that represent the closeness to expiration date
+   */
+  public getExpirationClass(expDate: Date): string {
+    const date = new Date(expDate);
+    let expClass = 'frozen';
+    if (expDate) {
+      const difference = this.daysToExpire(date);
+      // console.log('LOG: FridgePage -> difference', difference);
+      if (difference < 0) {
+        expClass = 'expired';
+      } else if (difference === 0) {
+        expClass = 'danger';
+      } else if (0 < difference && difference < EXP_WARNING + 1) {
+        expClass = 'warning';
+      } else {
+        expClass = 'success';
+      }
+    }
+    return expClass;
+  }
+
+  /**
+   * Calculate the days left to expire
+   * @param expDate expiration date
+   * @return the number of days left to expire rounded
+   */
+  private daysToExpire(expDate: Date): number {
+    const date = new Date(expDate);
+    // TODO: revisar antes valor en los cambios de día
+    return Math.ceil((date.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
   }
 
 }

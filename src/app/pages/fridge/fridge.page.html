@@ -28,8 +28,7 @@
 
     <ion-item-sliding #slidingItem *ngFor="let food of foodList | filter: ['name']: searchtext; let i = index">
 
-      <ion-item>
-
+      <ion-item [ngClass]="getExpirationClass(food?.expiration)">
         <ion-row>
           <ion-col size="7">
             <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFoodName($event, food?.id)"

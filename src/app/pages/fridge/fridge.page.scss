@@ -2,6 +2,24 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
+ion-item {
+  &.expired {
+    border-left: var(--ion-color-tertiary) 8px solid;
+  }
+  &.danger {
+    border-left: var(--ion-color-danger) 8px solid;
+  }
+  &.warning {
+    border-left: var(--ion-color-warning) 8px solid;
+  }
+  &.success {
+    border-left: var(--ion-color-success) 8px solid;
+  }
+  &.frozen {
+    border-left: var(--ion-color-secondary) 8px solid;
+  }
+}
+
 .new-food-row {
   display: flex;
   align-items: center;
