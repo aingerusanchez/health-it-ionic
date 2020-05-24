@@ -1,15 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+// SERVICES
 import { StorageService, StorageKey } from 'src/app/services/storage.service';
+// PIPES
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
+// MODELS
 import { Food } from 'src/app/models/models-index';
 
 @Component({
   selector: 'fridge',
   templateUrl: 'fridge.page.html',
-  styleUrls: ['fridge.page.scss']
+  styleUrls: ['fridge.page.scss'],
+  providers: [FilterPipe]
 })
 export class FridgePage implements OnInit {
 
-  constructor(private storage: StorageService) { }
+  constructor(
+    private storage: StorageService,
+    private filterPipe: FilterPipe,
+  ) { }
 
   public foodList: Food[] = [];
   public newFood = '';
@@ -19,18 +27,26 @@ export class FridgePage implements OnInit {
   public maxDate: string;
   public searchtext: string;
 
-  async ngOnInit(): Promise<void> {
-    this.foodList = await this.storage.getObject(StorageKey.FOOD_LIST) || [];
+  async ngOnInit() {
+    this.foodList = await this.getFoodList();
     console.log('Carga inicial de la lista de alimentos: ');
     console.table(this.foodList);
     this.minDate = this.getTodayISOString();
     this.maxDate = this.getMaxDateISOString();
   }
 
+  private async getFoodList(): Promise<Food[]> {
+    let storedFoodList: Food[] = await this.storage.getObject(StorageKey.FOOD_LIST) || [];
+    if (storedFoodList.length) {
+      storedFoodList = storedFoodList.map((food: Food) => new Food(food));
+    }
+    return storedFoodList;
+  }
+
   /** Add a new food to the `foodList` */
-  public addNewFood() {
+  public createFood() {
     if (this.newFood) {
-      this.foodList.push({ name: this.newFood, amount: this.newAmount, expiration: this.newExpiration });
+      this.foodList.push(new Food({ name: this.newFood, amount: this.newAmount, expiration: this.newExpiration }));
       this.newFood = '';
       this.newAmount = null;
       this.newExpiration = null;
@@ -38,19 +54,21 @@ export class FridgePage implements OnInit {
     }
   }
 
-  /** Edit a food from `foodList` */
-  public editFoodName(event: any, i: number) {
-    const food = event.detail.value;
-    if (food) {
-      this.foodList[i] = { ...this.foodList[i], name: food.trim() };
+  /** Edit a food from `foodList` by ID */
+  public editFoodName(event: any, foodID: number) {
+    const foodName = event.detail.value;
+    if (foodName) {
+      const food = this.getFoodById(foodID);
+      food.name = foodName; // = { ...this.foodList[i], name: food.trim() };
       this.updateFoodList(this.foodList);
     }
   }
 
-  public editFoodExpiration(event: any, i: number) {
+  public editFoodExpiration(event: any, foodID: number) {
     const foodExpiration = event.detail.value;
     if (foodExpiration) {
-      this.foodList[i] = { ...this.foodList[i], expiration: foodExpiration };
+      const food = this.getFoodById(foodID);
+      food.expiration = foodExpiration;
       this.updateFoodList(this.foodList);
     }
   }
@@ -61,17 +79,23 @@ export class FridgePage implements OnInit {
     }, 150);
   }
 
-  /** Delete a food from `foodList` based on food index */
-  public delete(foodIndex: number) {
+  /** Delete a food from `foodList` based on food ID */
+  public delete(foodID: number): void {
+    const foodIndex = this.foodList.findIndex((listFood: Food) => listFood.id === foodID);
     this.foodList.splice(foodIndex, 1);
     this.updateFoodList(this.foodList);
+    this.searchtext = '';
+    // this.filterPipe.transform(this.foodList, ['name'], this.searchtext);
   }
 
-  /** Delete a food expiration date */
-  public freeze(foodIndex: number, slidingItem: any) {
-    this.foodList[foodIndex].expiration = null;
+  /** Delete a food expiration date finded by food ID */
+  public freeze(foodID: number, slidingItem: HTMLIonItemSlidingElement): void {
+    const food = this.getFoodById(foodID);
+    food.expiration = null;
     this.updateFoodList(this.foodList);
     slidingItem.close();
+    this.searchtext = '';
+    // this.filterPipe.transform(this.foodList, ['name'], this.searchtext);
   }
 
   private updateFoodList(foodList: Food[]): void {
@@ -80,26 +104,29 @@ export class FridgePage implements OnInit {
   }
 
   /** Decrement food amount -1 if it's greater than 1 */
-  public decrement(food: Food, i: number) {
-    if (food && i >= 0) {
-      if (this.foodList[i].amount > 1) { this.foodList[i].amount--; }
+  public decrement(food: Food) {
+    if (food && food.amount > 1) {
+      food.amount--;
       this.updateFoodList(this.foodList);
     }
   }
 
   /** Increment food amount +1 */
   public increment(food: Food, i: number) {
-    if (food && i >= 0) {
-      this.foodList[i].amount++;
+    if (food) {
+      food.amount++;
       this.updateFoodList(this.foodList);
     }
   }
 
-  /* public filterFoodlist(event: CustomEvent) {
-    if (event.detail.value) {
-      debugger;
+  /** Return `Food` from `FoodList` by foodID */
+  private getFoodById(foodID: number): Food {
+    let food: Food;
+    if (this.foodList.length) {
+      food = this.foodList.find((listfood: Food) => listfood.id === foodID);
     }
-  } */
+    return food;
+  }
 
   private sortByExpiration(foodList: Food[]): Food[] {
     foodList.sort((a, b) => {

@@ -32,7 +32,7 @@
 
         <ion-row>
           <ion-col size="7">
-            <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFoodName($event, i)"
+            <ion-input type="text" value="{{ food.name | capitalize }}" (ionChange)="editFoodName($event, food?.id)"
               debounce="3000" [tabindex]="i">
             </ion-input>
           </ion-col>
@@ -41,17 +41,17 @@
             <ion-datetime displayFormat="DD/MM/YYYY" class="ion-text-right ion-no-padding" mode="ios"
               value="{{ food.expiration}}" [min]="minDate" [max]="maxDate"
               [placeholder]="'FROZEN' | translate | capitalize" [doneText]="'SELECT' | translate | capitalize"
-              [cancelText]="'CANCEL' |  translate | capitalize" (ionChange)="editFoodExpiration($event, i)">
+              [cancelText]="'CANCEL' |  translate | capitalize" (ionChange)="editFoodExpiration($event, food.id)">
             </ion-datetime>
           </ion-col>
         </ion-row>
 
         <ion-buttons slot="end" class="ion-no-margin">
-          <ion-button (click)="decrement(food, i)" color="danger">
+          <ion-button (click)="decrement(food)" color="danger">
             <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
           </ion-button>
           <ion-label color="dark" class="food-amount ion-text-center" bold>{{ food?.amount }}</ion-label>
-          <ion-button (click)="increment(food, i)" color="primary">
+          <ion-button (click)="increment(food)" color="primary">
             <ion-icon name="add-circle" slot="icon-only"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -59,10 +59,10 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="delete(i)" color="light">
+        <ion-item-option (click)="delete(food.id)" color="light">
           <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>
         </ion-item-option>
-        <ion-item-option (click)="freeze(i, slidingItem)" color="light">
+        <ion-item-option (click)="freeze(food.id, slidingItem)" color="light">
           <ion-icon slot="icon-only" name="snow" color="secondary"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -76,7 +76,7 @@
   <ion-row class="new-food-row">
     <ion-col size="4">
       <ion-input type="text" [(ngModel)]="newFood" [placeholder]="'FOOD' | translate | capitalize" autocapitalize
-        class="bold ion-padding-start" color="light" (keyup.enter)="addNewFood()">
+        class="bold ion-padding-start" color="light" (keyup.enter)="createFood()">
       </ion-input>
     </ion-col>
 
@@ -89,11 +89,11 @@
 
     <ion-col size="4" class="horizontal-center ion-padding-end">
       <ion-input type="number" class="ion-text-right ion-padding-end" [(ngModel)]="newAmount" min="1" placeholder="1"
-        (keyup.enter)="addNewFood()">
+        (keyup.enter)="createFood()">
       </ion-input>
 
       <ion-button fill="clear" shape="round" class="bold ion-no-margin ion-no-padding" color="primary" size="large"
-        (click)="addNewFood()">
+        (click)="createFood()">
         <ion-icon slot="icon-only" name="add-circle"></ion-icon>
       </ion-button>
 
