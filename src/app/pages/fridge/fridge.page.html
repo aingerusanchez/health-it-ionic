@@ -26,7 +26,8 @@
 
   <ion-list class="food-list ion-no-padding">
 
-    <ion-item-sliding #slidingItem *ngFor="let food of foodList | filter: ['name']: searchtext; let i = index">
+    <ion-item-sliding #slidingItem
+      *ngFor="let food of foodList | filter: ['name']: searchtext | orderBy: ['+expiration']; let i = index">
 
       <ion-item [ngClass]="getExpirationClass(food?.expiration)">
         <ion-row>
