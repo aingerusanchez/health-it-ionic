@@ -1,0 +1,22 @@
+
+// FONT-TYPES
+[bold], .bold {
+  font-weight: bold;
+}
+
+[small], .small {
+  font-size: small;
+}
+
+[large], .large {
+  font-size: large;
+}
+
+[horizontal-center], .horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+[center], .center {
+  margin: auto;
+}

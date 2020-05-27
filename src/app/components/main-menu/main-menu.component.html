@@ -1,0 +1,55 @@
+<ion-menu side="start" menuId="mainMenu" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title bold>{{ appName }}</ion-title>
+
+      <ion-buttons slot="end">
+        <!-- <ion-item color="primary" lines="none">
+          <ion-icon slot="start" name="sunny"></ion-icon>
+          <ion-toggle [(ngModel)]="theme.darkMode" color="tertiary"
+            (ionChange)="theme.toggleTheme($event.detail.checked)"></ion-toggle>
+          <ion-icon slot="end" name="moon" color="tertiary"></ion-icon>
+        </ion-item> -->
+
+        <ion-thumbnail class="flag-thumbnail">
+          <img class="language-flag" src="assets/icon/{{currenLang}}.jpg" />
+        </ion-thumbnail>
+
+        <ion-select class="ion-padding-end bold" selectedText="{{ translate.currentLang | uppercase }}"
+          [(value)]="translate.currentLang" interface="popover" (ionChange)="changeLang($event.detail.value)">
+          <ion-select-option [value]="lang" *ngFor="let lang of translate.getLangs()">
+            {{ lang | uppercase }} - {{ lang | uppercase | translate | titlecase }}
+          </ion-select-option>
+        </ion-select>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar color="tertiary">
+      <ion-title mode="md">
+        <ion-note color="dark">Silver Software</ion-note><br>
+        <ion-note color="dark">Health-It! <b>v{{ appVersion }}</b></ion-note>
+      </ion-title>
+
+      <ion-buttons slot="end">
+        <ion-item color="tertiary" lines="none">
+          <ion-icon slot="start" name="sunny"></ion-icon>
+          <ion-toggle [(ngModel)]="theme.darkMode" color="secondary"
+            (ionChange)="theme.toggleTheme($event.detail.checked)"></ion-toggle>
+          <ion-icon slot="end" name="moon" color="secondary"></ion-icon>
+        </ion-item>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+</ion-menu>

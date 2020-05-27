@@ -1,0 +1,13 @@
+{
+    "FRIDGE": "fridge",
+    "ES": "spanish",
+    "EU": "basque",
+    "EN": "english",
+    "EXPIRATION": "expiration",
+    "FROZEN": "frozen",
+    "SELECT": "select",
+    "CANCEL": "cancel",
+    "NEW_FOOD": "new food",
+    "FOOD": "food",
+    "SEARCH_BY_NAME": "search by name"
+}

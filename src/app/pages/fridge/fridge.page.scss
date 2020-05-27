@@ -1,3 +1,43 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+ion-item {
+  &.expired {
+    border-left: var(--ion-color-tertiary) 8px solid;
+  }
+  &.danger {
+    border-left: var(--ion-color-danger) 8px solid;
+  }
+  &.warning {
+    border-left: var(--ion-color-warning) 8px solid;
+  }
+  &.success {
+    border-left: var(--ion-color-success) 8px solid;
+  }
+  &.frozen {
+    border-left: var(--ion-color-secondary) 8px solid;
+  }
+}
+
+.new-food-row {
+  display: flex;
+  align-items: center;
+  background: var(--ion-color-tertiary-tint);
+
+  ion-col {
+    // padding-left: 4px;
+    // padding-right: 4px;
+
+    .new-expiration {
+      color: var(--ion-color-dark);
+      position: absolute;
+      bottom: -15px;
+      // padding-left: 16px;
+    }
+  }
+}
+
+.food-amount {
+  width: 24px;
+}

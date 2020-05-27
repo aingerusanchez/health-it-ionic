@@ -39,14 +39,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: `/tabs/${TabRef.NEVERA}`, // Default open tab2 (middle tab)
+        redirectTo: `/tabs/${TabRef.NEVERA}`, // Default open tab2 (center tab)
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: `/tabs/${TabRef.NEVERA}`, // Default open tab2 (center tab)
     pathMatch: 'full'
   }
 ];
