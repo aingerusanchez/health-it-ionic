@@ -37,10 +37,8 @@ export class OrderByPipe implements PipeTransform {
         items.sort();
         break;
     }
-    /* if (compareProps === OrderType.ASC || compareProps === OrderType.DES) {
-      return compareProps === '+' ? items.sort() : items.sort().reverse();
-    } */
 
+    // If it's an individual porpery, and isn't an Array -> convert to unique item Array(1)
     if (Array.isArray(compareProps) === false) {
       compareProps = [compareProps] as string[];
     }
