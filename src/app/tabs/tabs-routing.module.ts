@@ -8,12 +8,12 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'shoplist',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../pages/shoplist/shoplist.module').then(m => m.ShoplistPageModule)
           }
         ]
       },
